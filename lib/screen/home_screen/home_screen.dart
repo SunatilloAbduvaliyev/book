@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:library_proect/screen/route.dart';
 import 'package:library_proect/view_models/view_models.dart';
 import 'package:provider/provider.dart';
+
+import '../search/search_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -18,6 +21,20 @@ class HomeScreen extends StatelessWidget {
           ),
         ),
         backgroundColor: Colors.blue,
+        actions: [
+          IconButton(
+            onPressed: () {
+              showSearch(
+                context: context,
+                delegate: SearchBook(
+                  books: Provider.of<BookViewModel>(context, listen: false).searchBook,
+                ),
+              );
+
+            },
+            icon: const Icon(Icons.search),
+          ),
+        ],
       ),
       body: context.watch<BookViewModel>().isLoading
           ? const Center(
