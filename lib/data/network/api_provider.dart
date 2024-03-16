@@ -6,7 +6,7 @@ import '../models/my_response/my_response.dart';
 
 class ApiProvider {
   static Future<MyResponse> getAllBooks() async {
-    Uri uri = Uri.https(AppConstants.baseUrl, "/api/v1/books");
+    Uri uri = Uri.https(AppConstants.baseUrl, "/api/v1/book");
     try {
       http.Response response = await http.get(
         uri,
@@ -31,7 +31,7 @@ class ApiProvider {
   }
 
   static Future<MyResponse> addBook(BookModel productModel) async {
-    Uri uri = Uri.https(AppConstants.baseUrl, "/api/v1/books");
+    Uri uri = Uri.https(AppConstants.baseUrl, "/api/v1/book");
     try {
       http.Response response = await http.post(
         uri,
@@ -51,7 +51,7 @@ class ApiProvider {
   }
 
   static Future<MyResponse> deleteBook(String productUUID) async {
-    Uri uri = Uri.https(AppConstants.baseUrl, "/api/v1/books");
+    Uri uri = Uri.https(AppConstants.baseUrl, "/api/v1/book");
     try {
       http.Response response = await http.delete(
         uri,
@@ -73,7 +73,7 @@ class ApiProvider {
   }
 
   static Future<MyResponse> updateBook(BookModel productModel) async {
-    Uri uri = Uri.https(AppConstants.baseUrl, "/api/v1/books");
+    Uri uri = Uri.https(AppConstants.baseUrl, "/api/v1/book");
     try {
       http.Response response = await http.put(
         uri,

@@ -21,7 +21,7 @@ class BookModel {
 
   factory BookModel.fromJson(Map<String, dynamic> json) {
     return BookModel(
-      productName: json["book_name"] as String? ?? "",
+      productName: json["name"] as String? ?? "",
       description: json["description"] as String? ?? "",
       imageUrl: json["image_url"] as String? ?? "",
       price: (json["price"] as num? ?? 0.0).toDouble(),
@@ -34,7 +34,7 @@ class BookModel {
 
   Map<String, dynamic> toJson() {
     return {
-      "book_name": productName,
+      "name": productName,
       "price": price,
       "description": description,
       "rate": rate,
@@ -46,7 +46,7 @@ class BookModel {
 
   Map<String, dynamic> toJsonForUpdate() {
     return {
-      "book_name": productName,
+      "name": productName,
       "price": price,
       "description": description,
       "rate": rate,
