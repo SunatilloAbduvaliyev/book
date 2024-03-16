@@ -67,9 +67,9 @@ class BookViewModel extends ChangeNotifier {
     }
   }
 
-  getCategoryBook({int? id = 1}){
+  getCategoryBook({required int id}){
     _notify(true);
-    categoryBook = allBooks.where((element) => element.categoryId == id).toList();
+    id == 0?categoryBook = allBooks:categoryBook = allBooks.where((element) => element.categoryId == id).toList();
     _notify(false);
     notifyListeners();
   }

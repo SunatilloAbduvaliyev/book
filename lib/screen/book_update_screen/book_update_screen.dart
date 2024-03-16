@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:library_proect/data/models/book_model/book_model.dart';
 import 'package:library_proect/screen/book_update_screen/widgets/global_button.dart';
@@ -53,8 +55,7 @@ class _BookUpdateScreenState extends State<BookUpdateScreen> {
       ),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 15.w),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child: ListView(
           children: [
             SizedBox(height: 5.h),
             UpdateBook(
@@ -67,14 +68,7 @@ class _BookUpdateScreenState extends State<BookUpdateScreen> {
               title: "Description update",
               controller: controllerTwo,
               type: TextInputType.text,
-              lines: 4,
-            ),
-            SizedBox(height: 10.h),
-            UpdateBook(
-              title: "ImageUrl update",
-              controller: controllerThree,
-              type: TextInputType.text,
-              lines: 4,
+              lines: 5,
             ),
             SizedBox(height: 10.h),
             UpdateBook(
@@ -83,7 +77,7 @@ class _BookUpdateScreenState extends State<BookUpdateScreen> {
               type: TextInputType.number,
               lines: 1,
             ),
-            const Spacer(),
+            const SizedBox(height: 100,),
             GlobalButton(
               text: "Update",
               onTap: () async {

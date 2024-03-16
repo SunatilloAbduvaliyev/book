@@ -8,8 +8,8 @@ class UpdateBook extends StatelessWidget {
     required this.controller,
     required this.type,
     required this.lines,
-  });
 
+  });
   final String title;
   final TextEditingController controller;
   final TextInputType type;
@@ -27,23 +27,26 @@ class UpdateBook extends StatelessWidget {
             color: Colors.black,
           ),
         ),
-        SizedBox(
-          height: 50.h,
-          child: TextField(
-            keyboardType: type,
-            textAlign: TextAlign.left,
-            maxLines: lines,
-            decoration:  InputDecoration(
-              focusedBorder: const OutlineInputBorder(
-                borderSide: BorderSide(
-                  width: 1,
-                  color: Colors.red,
-                ),
+        TextField(
+          keyboardType: type,
+          textAlign: TextAlign.left,
+          maxLines: lines,
+          decoration: InputDecoration(
+            focusedBorder: const OutlineInputBorder(
+              borderSide: BorderSide(
+                width: 1,
+                color: Colors.black,
               ),
-              contentPadding: EdgeInsets.symmetric(vertical: 5.h),
             ),
-            controller: controller,
+            enabledBorder: const OutlineInputBorder(
+              borderSide: BorderSide(
+                width: 1,
+                color: Colors.black,
+              ),
+            ),
+            contentPadding: EdgeInsets.symmetric(vertical: 5.h),
           ),
+          controller: controller,
         ),
       ],
     );
