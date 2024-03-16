@@ -1,11 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:library_proect/screen/book_description_screen/home_description_screen.dart';
+import 'package:library_proect/screen/book_update_screen/book_update_screen.dart';
 import 'package:library_proect/view_models/view_models.dart';
 import 'package:provider/provider.dart';
-
 import '../../data/repository/category_repository.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -83,7 +80,8 @@ class HomeScreen extends StatelessWidget {
                                     width: 120.w,
                                     height: 220.h,
                                     child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
                                         Container(
                                           width: 120.w,
@@ -105,47 +103,48 @@ class HomeScreen extends StatelessWidget {
                                           ),
                                         ),
                                         SizedBox(height: 10.h),
-                                       SizedBox(
-                                         child: Text(
-                                           context
-                                               .watch<BookViewModel>()
-                                               .allBooks[index]
-                                               .productName,
-                                           style: TextStyle(
-                                             color: Colors.black,
-                                             fontWeight: FontWeight.bold,
-                                             fontSize: 12.w,
-                                           ),
-                                         ),
-                                       ),
-                                       const Spacer(),
-                                       Row(
-                                         children: [
-                                           Text(
-                                             "\$ ${context
-                                                 .watch<BookViewModel>()
-                                                 .allBooks[index]
-                                                 .price}",
-                                             style: TextStyle(
-                                               color: Colors.black,
-                                               fontWeight: FontWeight.bold,
-                                               fontSize: 12.w,
-                                             ),
-                                           ),
-                                           const Spacer(),
-                                           GestureDetector(
-                                             child: const Icon(Icons.save_alt_rounded),
-                                           ),
-                                         ],
-                                       ),
+                                        SizedBox(
+                                          child: Text(
+                                            context
+                                                .watch<BookViewModel>()
+                                                .allBooks[index]
+                                                .productName,
+                                            style: TextStyle(
+                                              color: Colors.black,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 12.w,
+                                            ),
+                                          ),
+                                        ),
+                                        const Spacer(),
+                                        Row(
+                                          children: [
+                                            Text(
+                                              "\$ ${context.watch<BookViewModel>().allBooks[index].price}",
+                                              style: TextStyle(
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 12.w,
+                                              ),
+                                            ),
+                                            const Spacer(),
+                                            GestureDetector(
+                                              child: const Icon(
+                                                  Icons.save_alt_rounded),
+                                            ),
+                                          ],
+                                        ),
                                       ],
                                     ),
                                   ),
                                   Positioned(
-                                    top:0,
+                                    top: 0,
                                     left: 0,
                                     child: Container(
-                                      padding: EdgeInsets.symmetric(horizontal: 5.w,vertical: 2.h,),
+                                      padding: EdgeInsets.symmetric(
+                                        horizontal: 5.w,
+                                        vertical: 2.h,
+                                      ),
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.only(
                                           topLeft: Radius.circular(12.r),
@@ -154,10 +153,15 @@ class HomeScreen extends StatelessWidget {
                                       ),
                                       child: Row(
                                         children: [
-                                          const Icon(Icons.star,color: Colors.amber),
+                                          const Icon(Icons.star,
+                                              color: Colors.amber),
                                           SizedBox(width: 2.w),
                                           Text(
-                                            context.watch<BookViewModel>().allBooks[index].rate.toString(),
+                                            context
+                                                .watch<BookViewModel>()
+                                                .allBooks[index]
+                                                .rate
+                                                .toString(),
                                             style: const TextStyle(
                                               color: Colors.white,
                                               fontWeight: FontWeight.normal,
@@ -183,7 +187,7 @@ class HomeScreen extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => BookDescriptionScreen(
+                              builder: (context) => BookUpdateScreen(
                                 bookModel: context
                                     .watch<BookViewModel>()
                                     .allBooks[index],
