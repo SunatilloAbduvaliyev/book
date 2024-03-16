@@ -6,12 +6,13 @@ import '../data/models/my_response/my_response.dart';
 
 class BookViewModel extends ChangeNotifier {
   List<BookModel> allBooks = [];
+  List<BookModel> categoryBook = [];
 
   String statusText = "";
 
   bool isLoading = false;
 
-  BookViewModel({required this.productRepo});
+  BookViewModel({required this.productRepo}){getAllBooks();}
 
   final BookRepository productRepo;
 
@@ -21,6 +22,7 @@ class BookViewModel extends ChangeNotifier {
     _notify(false);
     if (myResponse.errorText.isEmpty) {
       allBooks = myResponse.data as List<BookModel>;
+      categoryBook = myResponse.data as List<BookModel>;
     } else {
       statusText = myResponse.errorText;
     }
@@ -63,6 +65,13 @@ class BookViewModel extends ChangeNotifier {
     } else {
       statusText = myResponse.errorText;
     }
+  }
+
+  getCategoryBook({int? id = 1}){
+    _notify(true);
+    categoryBook = allBooks.where((element) => element.categoryId == id).toList();
+    _notify(false);
+    notifyListeners();
   }
 
   _notify(bool value) {
