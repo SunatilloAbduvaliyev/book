@@ -4,6 +4,7 @@ import 'package:library_proect/screen/book_update_screen/book_update_screen.dart
 import 'package:library_proect/view_models/view_models.dart';
 import 'package:provider/provider.dart';
 import '../../data/repository/category_repository.dart';
+import '../search/search_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -21,6 +22,20 @@ class HomeScreen extends StatelessWidget {
             fontSize: 20.0,
           ),
         ),
+        actions: [
+          IconButton(
+            onPressed: () {
+              showSearch(
+                context: context,
+                delegate: SearchBook(
+                  books: Provider.of<BookViewModel>(context, listen: false).allBooks,
+                ),
+              );
+
+            },
+            icon: const Icon(Icons.search),
+          ),
+        ],
         backgroundColor: Colors.white,
       ),
       body: context.watch<BookViewModel>().isLoading
