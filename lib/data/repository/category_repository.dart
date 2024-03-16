@@ -1,8 +1,8 @@
-enum BookCategories {
-  fiction,
-  scienceFiction,
-  fantasy,
-  adventure,
-  horror,
-  historical,
-}
+List bookCategories = <String>[
+  "all",
+  "science fiction",
+  "romance",
+  "horror",
+  "fantasy",
+  "mystery",
+];
