@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:dio/dio.dart';
 import 'package:http/http.dart' as http;
 import '../../utils/constants/app_constanats.dart';
 import '../models/book_model/book_model.dart';
@@ -6,19 +7,22 @@ import '../models/my_response/my_response.dart';
 
 class ApiProvider {
   static Future<MyResponse> getAllBooks() async {
-    Uri uri = Uri.https(AppConstants.baseUrl, "/api/v1/book");
+   // Uri uri = Uri.https(AppConstants.baseUrl, "crudapi.co.uk/api/v1/book");
+    Dio dio = Dio();
     try {
-      http.Response response = await http.get(
-        uri,
-        headers: {
-          "Authorization": "Bearer ${AppConstants.token}",
-          "Content-Type": "application/json",
-        },
+      Response response = await dio.get(
+          "https://crudapi.co.uk/api/v1/book",
+        options: Options(
+          headers: {
+            "Authorization": "Bearer ${AppConstants.token}",
+            "Content-Type": "application/json",
+          },
+        )
       );
 
       if (response.statusCode == 200) {
         return MyResponse(
-          data: (jsonDecode(response.body)["items"] as List?)
+          data: (response.data["items"] as List?)
               ?.map((e) => BookModel.fromJson(e))
               .toList() ??
               [],
@@ -31,15 +35,18 @@ class ApiProvider {
   }
 
   static Future<MyResponse> addBook(BookModel productModel) async {
-    Uri uri = Uri.https(AppConstants.baseUrl, "/api/v1/book");
+    //Uri uri = Uri.https(AppConstants.baseUrl, "/api/v1/book");
+    Dio dio = Dio();
     try {
-      http.Response response = await http.post(
-        uri,
-        headers: {
-          "Authorization": "Bearer ${AppConstants.token}",
-          "Content-Type": "application/json",
-        },
-        body: jsonEncode([productModel.toJson()]),
+      Response response = await dio.post(
+        "https://crudapi.co.uk/api/v1/book",
+        data: jsonEncode([productModel.toJson()]),
+        options: Options(
+          headers: {
+            "Authorization": "Bearer ${AppConstants.token}",
+            "Content-Type": "application/json",
+          },
+        ),
       );
       if (response.statusCode == 201) {
         return MyResponse(data: "Product added successfully!");
@@ -51,15 +58,18 @@ class ApiProvider {
   }
 
   static Future<MyResponse> deleteBook(String productUUID) async {
-    Uri uri = Uri.https(AppConstants.baseUrl, "/api/v1/book");
+    //Uri uri = Uri.https(AppConstants.baseUrl, "/api/v1/book");
+    Dio dio = Dio();
     try {
-      http.Response response = await http.delete(
-        uri,
-        headers: {
-          "Authorization": "Bearer ${AppConstants.token}",
-          "Content-Type": "application/json",
-        },
-        body: jsonEncode([
+      Response response = await dio.delete(
+        "https://crudapi.co.uk/api/v1/book",
+        options: Options(
+          headers: {
+            "Authorization": "Bearer ${AppConstants.token}",
+            "Content-Type": "application/json",
+          },
+        ),
+        data: jsonEncode([
           {"_uuid": productUUID}
         ]),
       );
@@ -73,15 +83,18 @@ class ApiProvider {
   }
 
   static Future<MyResponse> updateBook(BookModel productModel) async {
-    Uri uri = Uri.https(AppConstants.baseUrl, "/api/v1/book");
+    //Uri uri = Uri.https(AppConstants.baseUrl, "/api/v1/book");
+    Dio dio = Dio();
     try {
-      http.Response response = await http.put(
-        uri,
-        headers: {
-          "Authorization": "Bearer ${AppConstants.token}",
-          "Content-Type": "application/json",
-        },
-        body: jsonEncode([productModel.toJsonForUpdate()]),
+      Response response = await dio.put(
+        "https://crudapi.co.uk/api/v1/book",
+        options: Options(
+          headers: {
+            "Authorization": "Bearer ${AppConstants.token}",
+            "Content-Type": "application/json",
+          },
+        ),
+        data: jsonEncode([productModel.toJsonForUpdate()]),
       );
       if (response.statusCode == 200) {
         return MyResponse(data: "Product updated successfully!");

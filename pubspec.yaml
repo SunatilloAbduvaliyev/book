@@ -26,6 +26,7 @@ dependencies:
   easy_localization: ^3.0.5
   carousel_slider: ^4.2.1
   adaptive_theme: ^3.6.0
+  dio: ^5.4.2+1
 
 dev_dependencies:
   flutter_test:
